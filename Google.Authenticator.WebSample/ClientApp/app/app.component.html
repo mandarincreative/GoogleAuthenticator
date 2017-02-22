@@ -1,0 +1,30 @@
+<div class="app-flex">
+    <div class="navbar-fixed">
+        <nav role="navigation">
+            <div class="nav-wrapper">
+                <a class="brand-logo" style="padding-left: 20px;" [routerLink]="['/']">
+                    <img src="img/mcg-logo-header.png" />
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a class="navigationLinkButton" [routerLink]="['/home']">Home</a></li>
+                    <!--<li><a class="navigationLinkButton" *ngIf="!securityService.IsAuthorized" [routerLink]="['/register']">Register</a></li>
+                    <li><a class="navigationLinkButton" *ngIf="!securityService.IsAuthorized" [routerLink]="['/login']">Login</a></li>
+                    <li><a class="navigationLinkButton" *ngIf="securityService.IsAuthorized" (click)="logout()">Logout</a></li>-->
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <main class="container">
+        <router-outlet></router-outlet>
+    </main>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                &copy; Mandarin Creative Group 
+                <small class="right">v.0.1.0 (Build YYYYMMDD123456789)</small>
+            </div>
+        </div>
+    </footer>
+</div>
+
+

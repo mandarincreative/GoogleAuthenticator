@@ -1,0 +1,60 @@
+<h4 class="center-align">Google Authenticator Test</h4>
+<div class="progress" *ngIf="isLoading">
+    <div class="indeterminate"></div>
+</div>
+<div class="row">
+    <div class="col m12">
+        <form materialize name="form" #f="ngForm" novalidate>
+            <div class="row">
+                <div class="input-field col m12">
+                    <input type="text" id="account-key" name="account-key" readonly="readonly" class="readable" value="-" [(ngModel)]="key" />
+                    <label for="account-key" class="active">Account Secret Key (randomly generated)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    Setup QR Code:<br />
+                    <img [src]="qrCodeUrl" style="height: 250px" [hidden]="qrCodeUrl == null">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col m12">
+                    <input type="text" id="manual-code" name="manual-code" readonly="readonly" class="readable" value="-" [(ngModel)]="manualCode" />
+                    <label for="manual-code">Manual Setup Code</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col m12">
+                    <input type="text" id="2fa-code" name="2fa-code" value="-" placeholder="Enter 2FA Code" [(ngModel)]="twoFactorCode" />
+                    <label for="2fa-code">2FA Code</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    <a class="btn waves-effect waves-light disabled" *ngIf="!canValidate()">
+                        Validate
+                        <i class="material-icons right">send</i>
+                    </a>
+                    <a class="btn waves-effect waves-light" (click)="validate()" *ngIf="canValidate()">
+                        Validate
+                        <i class="material-icons right">send</i>
+                    </a>
+                </div>
+            </div>
+            <div class="row" [hidden]="validationMessage == null || validationMessage.length == 0">
+                <div class="col m12">
+                    <div class="card darken-1 whit-text" [ngClass]="getValidationClass()">
+                        <div class="card-content">
+                            <span class="card-title">
+                                Validation Result
+                            </span>
+                            <div>
+                                {{validationMessage}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
